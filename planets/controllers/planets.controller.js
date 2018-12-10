@@ -1,7 +1,6 @@
 const PlanetModel = require('../models/planets.model');
 
 exports.insert = (req, res) => {
-    console.log(req)
     PlanetModel.createPlanet(req.body)
         .then(result => {
             res.status(201).send({id: result._id})
@@ -13,6 +12,13 @@ exports.insert = (req, res) => {
 
 exports.getPlanetById = (req, res) => {
     PlanetModel.findById(req.params.planetId)
+        .then(result => {
+            res.status(200).send(result);
+        })
+}
+
+exports.getPlanetByName = (req, res) => {
+    PlanetModel.findByName(req.params.planetName)
         .then(result => {
             res.status(200).send(result);
         })

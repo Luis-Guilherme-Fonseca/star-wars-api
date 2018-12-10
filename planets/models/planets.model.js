@@ -25,6 +25,18 @@ exports.findById = id => {
     })
 }
 
+exports.findByName = name => {
+    console.log(name)
+    return Planet.findOne({name:{$eq: name}})
+        .then(result => {
+            console.log(result)
+            result = result.toJSON();
+            delete result._id;
+            delete result.__v;
+            return result
+        })
+}
+
 exports.index = () => {
     return new Promise((resolve, reject) => {
         Planet.find()
