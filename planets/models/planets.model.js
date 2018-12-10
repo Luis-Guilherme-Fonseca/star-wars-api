@@ -15,3 +15,12 @@ exports.createPlanet = data => {
     const planet = new Planet(data)
     return planet.save()
 }
+
+exports.findById = id => {
+    return Planet.findById(id).then(result => {
+        result = result.toJSON();
+        delete result._id;
+        delete result.__v;
+        return result
+    })
+}
