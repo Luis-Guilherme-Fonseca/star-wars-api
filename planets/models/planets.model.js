@@ -26,7 +26,6 @@ exports.findById = id => {
 }
 
 exports.findByName = name => {
-    console.log(name)
     return Planet.findOne({name:{$eq: name}})
         .then(result => {
             console.log(result)
@@ -48,4 +47,12 @@ exports.index = () => {
                 }
             })
     })
+}
+
+exports.delete = (id) => {
+    return Planet.remove({_id: id}, err => {
+            if(err){
+                console.warn(err)
+            }
+        })
 }

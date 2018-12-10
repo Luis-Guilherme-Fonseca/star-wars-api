@@ -30,3 +30,10 @@ exports.getAllPlanets = (req, res) => {
             res.status(200).send(result);
         })
 }
+
+exports.deletePlanet = (req, res) => {
+    PlanetModel.delete(req.params.planetId)
+        .then(result => {
+            res.status(200).send({message: "Planet deleted with success"})
+        })
+}
