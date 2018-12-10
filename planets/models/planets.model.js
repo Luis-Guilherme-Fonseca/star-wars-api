@@ -24,3 +24,16 @@ exports.findById = id => {
         return result
     })
 }
+
+exports.index = () => {
+    return new Promise((resolve, reject) => {
+        Planet.find()
+            .exec((err, planets) => {
+                if(err){
+                    reject(err)
+                }else{
+                    resolve(planets)
+                }
+            })
+    })
+}
