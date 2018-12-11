@@ -28,7 +28,6 @@ exports.findById = id => {
 exports.findByName = name => {
     return Planet.findOne({name:{$eq: name}})
         .then(result => {
-            console.log(result)
             result = result.toJSON();
             delete result._id;
             delete result.__v;
@@ -52,7 +51,7 @@ exports.index = () => {
 exports.delete = (id) => {
     return Planet.remove({_id: id}, err => {
             if(err){
-                console.warn(err)
+                return err
             }
         })
 }

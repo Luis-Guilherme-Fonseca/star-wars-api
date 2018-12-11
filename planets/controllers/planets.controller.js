@@ -24,7 +24,7 @@ exports.getPlanetByName = (req, res) => {
         })
 }
 
-exports.getAllPlanets = (req, res) => {
+exports.getAllPlanets = (req, res, next) => {
     PlanetModel.index()
         .then(result => {
             res.status(200).send(result);

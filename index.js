@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const morgan = require('morgan')
 
 const PlanetsRouter = require('./planets/routes.config');
 
 const port = 3600
+
+app.use(morgan('dev'))
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');

@@ -6,4 +6,19 @@ exports.routesConfig = (app) => {
     app.get('/planets/name/:planetName', [PlanetsController.getPlanetByName]);
     app.get('/planets/', [PlanetsController.getAllPlanets]);
     app.delete('/planets/:planetId', [PlanetsController.deletePlanet])
+
+    app.use((req, res, next) => {
+        const error = new Error("Not Found");
+        error.status = 404;
+        next(error)
+    })
+
+    app.use((error, req, res, next) => {
+        res.status(error.status || 500);
+        res.json({
+            error: {
+                message: error.message
+            }
+        })
+    })
 }
