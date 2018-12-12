@@ -26,6 +26,15 @@ app.use(bodyParser.json());
 PlanetsRouter.routesConfig(app);
 
 
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.json({
+        error: {
+            message: error.message
+        }
+    })
+})
+
 app.listen(port, function () {
     console.log(`app listening at port ${port}`);
 });
